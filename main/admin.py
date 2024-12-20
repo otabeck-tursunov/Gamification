@@ -33,7 +33,7 @@ class MentorAdmin(admin.ModelAdmin):
             {
                 'fields':
                     (
-                        'first_name', 'last_name', 'course', 'point_limit', 'role'
+                        'first_name', 'last_name', 'course', 'point_limit'  
                     )
             }
         ),
@@ -53,6 +53,24 @@ class GroupAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (
+            None,
+            {
+                'fields':
+                    ('username', 'password')
+            }
+        ),
+        (
+            'Info',
+            {
+                'fields':
+                    (
+                        'first_name', 'last_name', 'birth_date', 'image', 'bio', 'point', 'group'
+                    )
+            }
+        ),
+    )
     list_display = ('id', 'username', 'first_name', 'last_name', 'point', 'group')
     list_display_links = ('id', 'username')
     list_filter = ('group',)
